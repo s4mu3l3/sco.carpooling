@@ -26,21 +26,6 @@
       "locator": "https://github.com/kristianhristov/cordova-cookie-master.git",
       "id": "com.cordova.plugins.cookiemaster"
     },
-    {
-      "variables": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.453601816446-ltpupimimr3snbpuv2fea3f1lu50p372"
-      },
-      "locator": "https://github.com/smartcommunitylab/cordova-plugin-googleplus",
-      "id": "cordova-plugin-googleplus"
-    },
-    {
-      "variables": {
-        "APP_ID": "1031028236933030",
-        "APP_NAME": "iPosto"
-      },
-      "locator": "~/workspace/cordova-plugin-facebook4",
-      "id": "cordova-plugin-facebook4"
-    },
     "cordova-plugin-file-transfer",
     "cordova-plugin-x-toast",
     "cordova-plugin-app-event",

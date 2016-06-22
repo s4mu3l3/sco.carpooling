@@ -3,8 +3,8 @@ angular.module('carpooling.services.config', [])
 .factory('Config', function ($rootScope, $http, $q, $filter) {
     $rootScope.version = '1.1.0';
 
-    var AAC_URL = 'https://tn.smartcommunitylab.it/aac';
-    var SERVER_URL = 'https://tn.smartcommunitylab.it/carpooling';
+    var AAC_URL = 'https://dev.smartcommunitylab.it/aac';
+    var SERVER_URL = 'https://dev.smartcommunitylab.it/carpooling';
     var GEOCODER_URL = 'https://os.smartcommunitylab.it/core.geocoder/spring';
     var APPID = 'QZByJ7flOj4rmtN3gpyBhMyw7jONUU3sgzJJT3pL';
     var CLIENTKEY = 'mTCHyDLCaogDtE5IA7g3xM0J0o400j4a8u9Nnc8N';
