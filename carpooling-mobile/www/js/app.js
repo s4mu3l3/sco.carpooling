@@ -335,6 +335,7 @@ angular.module('carpooling', [
     $httpProvider.defaults.withCredentials = true;
     $ionicConfigProvider.backButton.text('');
     $ionicConfigProvider.backButton.previousTitleText(false);
+    $ionicConfigProvider.views.transition('none'); /* Disabled for accessibility */
 })
 
 .config(function ($stateProvider, $urlRouterProvider) {
