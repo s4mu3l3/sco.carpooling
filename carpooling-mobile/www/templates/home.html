@@ -1,7 +1,7 @@
 <ion-view title="{{'app_name' | translate}}" class="home">
     <ion-nav-buttons side="right">
-        <a href="#/app/notifiche" class="button button-icon ion-android-notifications"><span class="badge badge-assertive header-badge" ng-if="notificationCounter > 0">{{notificationCounter}}</span></a>
-        <a ng-if="tab < 2" ng-href="{{tab == 0 ? '#/app/offri' : '#/app/cerca'}}" ng-class="{'ion-android-add': (tab == 0), 'ion-android-search': (tab == 1)}" class="button button-icon padding-left"></a>
+        <a href="#/app/notifiche" class="button button-icon ion-android-notifications" role="button" aria-label="notifiche"></a>
+        <a ng-if="tab < 2" ng-href="{{tab == 0 ? '#/app/offri' : '#/app/cerca'}}" ng-class="{'ion-android-add': (tab == 0), 'ion-android-search': (tab == 1)}" class="button button-icon padding-left" role="button" aria-label="crea un viaggio"></a>
     </ion-nav-buttons>
 
     <ion-tabs class="tabs-top" delegate-handle="tabs-home">
@@ -9,7 +9,7 @@
             <ion-view>
                 <ion-content>
                     <div class="my-panel my-driver">
-                        <h5>{{'lbl_offered'| translate}}</h5>
+                        <h1>{{'lbl_offered'| translate}}</h1>
 
                         <div class="padding empty" ng-if="driverTrips != null && driverTrips.length == 0">
                             <h6>{{'lbl_offered_none' | translate}}</h6>
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="my-panel my-passenger">
-                        <h5>{{'lbl_partecipated' | translate}}</h5>
+                        <h1>{{'lbl_partecipated' | translate}}</h1>
 
                         <div class="padding empty" ng-if="nonConfirmedTrips != null && nonConfirmedTrips.length == 0 && passengerTrips != null && passengerTrips.length == 0">
                             <h6>{{'lbl_partecipated_none' | translate}}</h6>
