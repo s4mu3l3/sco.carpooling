@@ -4,15 +4,15 @@
     </ion-nav-buttons>
     <ion-content>
         <div ng-if="!isMine">
-            <div id="trip-map-container" data-tap-disabled="true">
-                <leaflet event-broadcast="events" center="center" markers="markers" paths="pathLine" style="width: 100%; height: 200px;" ng-init="initMap()" id="tripMap"></leaflet>
+            <div id="trip-map-container" data-tap-disabled="true" aria-disabled="true" aria-label="mappa">
+                <leaflet event-broadcast="events" center="center" markers="markers" paths="pathLine" style="width: 100%; height: 200px;" ng-init="initMap()" id="tripMap" aria-hidden="true"></leaflet>
             </div>
             <div class="row trip-owner">
                 <div class="col">
                     <div class="trip-driver">
                         <p><i class="icons ion-person"></i>
                             <span>{{driverInfo.dpName}}</span></p>
-                        <button class="button button-clear button-calm custom-button-calm" ng-click="showUser()">
+                        <button class="button custom-button-calm" ng-click="showUser()" role="link" aria-label="mostra profilo">
                             {{'lbl_show_profile' | translate}}
                         </button>
                     </div>
@@ -64,9 +64,9 @@
             </p>
         </div>
 
-        <div class="padding trip-passengers">
-            <h5>{{'lbl_passengers' | translate | uppercase}}</h5>
-            <ul>
+        <div class="padding trip-passengers" aria-label="disponibilità posti: {{getNumber(bookingCounters.booked).length}} posti utilizzati {{getNumber(bookingCounters.available).length}} posti liberi">
+            <h5 aria-hidden="true">{{'lbl_passengers' | translate | uppercase}}</h5>
+            <ul aria-hidden="true">
                 <!--<li class="trip-places-booked" ng-repeat="i in getNumber(bookingCounters.booked) track by $index">
                     <i class="icons ion-person"></i>
                 </li>

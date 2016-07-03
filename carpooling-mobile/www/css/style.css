@@ -87,7 +87,7 @@
 .carpooling-theme .button-carpooling {
   border-color: #61dde6;
   background-color: #61dde6;
-  color: #FFFFFF;
+  color: #3448A5;
 }
 .carpooling-theme .button-carpooling-inverse {
   border-color: transparent;
@@ -793,7 +793,7 @@ table.chart .labels {}
 /* VIAGGIO */
 
 .carpooling-theme .trip-info {
-  color: gray;
+  color: #5c5f63;
 }
 .carpooling-theme .trip-info span {
   color: #000000;
@@ -836,7 +836,7 @@ table.chart .labels {}
   color: #FF0000;
 }
 .carpooling-theme .trip-status .accepted {
-  color: #00FF00;
+  color: #057329;
 }
 .carpooling-theme .trip-actions {
   text-align: center;
