@@ -5,11 +5,11 @@
     </ion-nav-buttons>
 
     <ion-tabs class="tabs-top" delegate-handle="tabs-home">
-        <ion-tab title="{{'tab_home_mytrips' | translate}}" ng-click="selectTab(0)">
+        <ion-tab title="I miei viaggi" ng-click="selectTab(0)">
             <ion-view>
                 <ion-content>
                     <div class="my-panel my-driver">
-                        <h1>{{'lbl_offered'| translate}}</h1>
+                        <h1>Offerti</h1>
 
                         <div class="padding empty" ng-if="driverTrips != null && driverTrips.length == 0">
                             <h6>{{'lbl_offered_none' | translate}}</h6>
@@ -133,7 +133,7 @@
             </ion-view>
         </ion-tab>
 
-        <ion-tab title="{{'tab_home_alltrips' | translate}}" ng-click="selectTab(1)">
+        <ion-tab title="Tutti i viaggi" ng-click="selectTab(1)">
             <ion-view>
                 <ion-content class="alltrips" ng-init="allTripsInit()">
                     <div class="content">
