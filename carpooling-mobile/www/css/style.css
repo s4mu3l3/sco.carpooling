@@ -1180,3 +1180,9 @@ div.iAmMemberlabel {
 .padding-top-20 {
   padding-top: 20px;
 }
+
+/*ACCESSIBILITY*/
+
+.acclink{
+   font-size: 1.5em;
+}

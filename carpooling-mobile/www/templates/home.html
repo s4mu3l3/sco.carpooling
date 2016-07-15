@@ -10,7 +10,7 @@
             <ion-content>
                <div class="my-panel my-driver">
                   <h1><span aria-label="Lista viaggi"></span>Offerti</h1>
-
+                  <span aria-label="{{maxItemsPerList}} elementi su {{driverTrips.length}} visualizzati"></span>
                   <div class="padding empty" ng-if="driverTrips != null && driverTrips.length == 0">
                      <h6>{{'lbl_offered_none' | translate}}</h6>
                      <a href="#/app/offri" class="button button-carpooling">{{'lbl_offered_btn' | translate}}</a>
@@ -45,15 +45,14 @@
                            <div class="trip-flag" ng-if="!!trip.style" ng-style="trip.style" aria-hidden="true"></div>
                         </div>
                      </div>
-                     <div class="seeall padding-right">
-                        <a href="#/app/mytrips/driver">{{'lbl_see_all' | translate}} <span aria-label="i viaggi offerti:"></span> </a>
-                     </div>
+                     <a class="acclink" href="#/app/mytrips/driver">{{'lbl_see_all' | translate}} <span aria-label="i viaggi offerti:"></span> </a>
                   </div>
                </div>
 
                <div class="my-panel my-passenger">
                   <!--<h1 aria-labelledby="lista viaggi partecipati">Partecipati</h1>-->
                   <h1><span aria-label="Lista viaggi"></span> Partecipati</h1>
+                  <span aria-label="{{maxItemsPerList}} elementi su {{nonConfirmedTrips.length}} visualizzati"></span>
                   <div class="padding empty" ng-if="nonConfirmedTrips != null && nonConfirmedTrips.length == 0 && passengerTrips != null && passengerTrips.length == 0">
                      <h6>{{'lbl_partecipated_none' | translate}}</h6>
                      <a href="#/app/cerca" class="button button-carpooling">{{'lbl_partecipated_btn' | translate}}</a>
@@ -88,13 +87,11 @@
                            <div class="trip-flag" ng-if="!!nctrip.style" ng-style="nctrip.style"></div>
                            <!-- CHECKMARK -->
                            <div class="trip-confirmed" ng-click="confirmDialog($index)">
-                              <i class="icons ion-ios-checkmark-outline custom-checkmark"></i>
+                              <i class="icons ion-ios-checkmark-outline custom-checkmark" role="dialog" aria-label="conferma il viaggio"></i>
                            </div>
                         </div>
                      </div>
-                     <div class="seeall padding-right">
-                        <a href="#/app/mytrips/passenger">{{'lbl_see_all' | translate}}</a>
-                     </div>
+                     <a class="acclink" href="#/app/mytrips/passenger">{{'lbl_see_all' | translate}}<span aria-label="i viaggi partecipati:"></span></a>
                   </div>
 
                   <div class="list" ng-if="passengerTrips != null && passengerTrips.length > 0 && nonConfirmedTrips.length < 2">

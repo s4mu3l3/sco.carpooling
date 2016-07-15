@@ -211,6 +211,8 @@ angular.module('carpooling.controllers.home', [])
    };
 
    $scope.confirmDialog = function ($index) {
+      document.getElementsByClassName("my-passenger")[0].setAttribute("aria-label", "modale aperto");
+      document.getElementsByClassName("my-passenger")[0].setAttribute("role", "alert");
       var confirmPopup = $ionicPopup.show({
          title: $filter('translate')('popup_confirm_boarding'),
          template: $filter('translate')('popup_confirm_boarding_body'),
@@ -235,6 +237,10 @@ angular.module('carpooling.controllers.home', [])
                }
                 }
             ]
+      });
+      confirmPopup.then(function () {
+         document.getElementsByClassName("my-passenger")[0].setAttribute("aria-label", "modale chiuso");
+         document.getElementsByClassName("my-passenger")[0].setAttribute("role", "alert");
       });
    };
 
