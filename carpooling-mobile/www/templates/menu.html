@@ -5,7 +5,7 @@
          <ion-nav-back-button aria-label="torna indietro">
          </ion-nav-back-button>
          <ion-nav-buttons side="left">
-            <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-if="!initialSetup" aria-label="menu"></button>
+            <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()" ng-if="!initialSetup" aria-label="menu"></button>
          </ion-nav-buttons>
       </ion-nav-bar>
       <ion-nav-view name="menuContent"></ion-nav-view>
@@ -14,13 +14,13 @@
    <ion-side-menu side="left">
       <ion-content>
          <ion-list>
-            <ion-item nav-clear menu-close href="#/app/home" aria-hidden="true">
+            <ion-item nav-clear menu-close href="#/app/home">
                <i class="icon ion-home">{{'menu_home'| translate}}</i>
             </ion-item>
-            <ion-item nav-clear menu-close href="#/app/mytrips/" aria-hidden="true">
+            <ion-item nav-clear menu-close href="#/app/mytrips/">
                <i class="icon ion-android-car">{{'menu_mytrips'| translate}}</i>
             </ion-item>
-            <ion-item nav-clear menu-close href="#/app/comunita" aria-hidden="true">
+            <ion-item nav-clear menu-close href="#/app/comunita">
                <i class="icon ion-ios-people">{{'menu_community'| translate}}</i>
             </ion-item>
             <!--
@@ -28,19 +28,19 @@
                     <i class="icon ion-chatboxes">{{'menu_chat'| translate}}</i>
                 </ion-item>
 -->
-            <ion-item nav-clear menu-close href="#/app/storico" aria-hidden="true">
+            <ion-item nav-clear menu-close href="#/app/storico">
                <i class="icon ion-folder">{{'menu_history'| translate}}</i>
             </ion-item>
-            <ion-item nav-clear menu-close href="#/app/notifiche" aria-hidden="true">
+            <ion-item nav-clear menu-close href="#/app/notifiche">
                <i class="icon ion-ios-bell">{{'menu_notifications'| translate}}</i>
             </ion-item>
-            <ion-item nav-clear menu-close href="#/app/profilo" aria-hidden="true">
+            <ion-item nav-clear menu-close href="#/app/profilo">
                <i class="icon ion-person">{{'menu_profile'| translate}}</i>
             </ion-item>
-            <ion-item nav-clear menu-close href="" ng-click="openCredits()" aria-hidden="true">
+            <ion-item nav-clear menu-close href="" ng-click="openCredits()">
                <i class="icon ion-information-circled">{{'menu_credits'| translate}}</i>
             </ion-item>
-            <ion-item nav-clear menu-close href="#" ng-click="logout()" aria-hidden="true">
+            <ion-item nav-clear menu-close href="#" ng-click="logout()">
                <i class="icon ion-log-out">{{'menu_logout'| translate}}</i>
             </ion-item>
          </ion-list>

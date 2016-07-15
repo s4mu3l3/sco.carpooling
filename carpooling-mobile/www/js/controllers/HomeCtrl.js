@@ -1,6 +1,6 @@
 angular.module('carpooling.controllers.home', [])
 
-.controller('AppCtrl', function ($scope, $state, $ionicModal) {
+.controller('AppCtrl', function ($scope, $state, $ionicModal, $ionicSideMenuDelegate) {
    $ionicModal.fromTemplateUrl('templates/modal_credits.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -16,11 +16,41 @@ angular.module('carpooling.controllers.home', [])
       $scope.modalCredits.hide();
    };
 
+   $scope.toggleLeftSideMenu = function () {
+      $ionicSideMenuDelegate.toggleLeft();
+   };
+
+   $scope.$watch(function () {
+         return $ionicSideMenuDelegate.getOpenRatio();
+      },
+      function (ratio) {
+         if (ratio == 1) {
+            for (i in document.getElementsByClassName("item-content")) {
+               if (!!document.getElementsByClassName("item-content")[i].isNumber) {
+                  console.log(document.getElementsByClassName("item-content")[i]);
+                  document.getElementsByClassName("item-content")[i].setAttribute("aria-hidden", "false");
+               }
+            }
+         } else {
+            for (i in document.getElementsByClassName("item-content")) {
+               if (!!document.getElementsByClassName("item-content")[i].isNumber) {
+                  console.log(document.getElementsByClassName("item-content")[i]);
+                  document.getElementsByClassName("item-content")[i].setAttribute("aria-hidden", "true");
+               }
+            }
+         }
+      });
+
 })
 
-.controller('HomeCtrl', function ($scope, $rootScope, $window, $state, $filter, $interval, $ionicPopup, $ionicScrollDelegate, Config, CacheSrv, StorageSrv, DriverSrv, Utils, UserSrv, PassengerSrv, $ionicTabsDelegate, $timeout) {
+.controller('HomeCtrl', function ($scope, $rootScope, $window, $state, $filter, $interval, $ionicPopup, $ionicScrollDelegate, Config, CacheSrv, StorageSrv, DriverSrv, Utils, UserSrv, PassengerSrv, $ionicTabsDelegate, $timeout, $ionicSideMenuDelegate) {
 
    /* ACCESSIBILITY */
+
+   if ($ionicSideMenuDelegate.isOpen()) {
+      alert("Aperto");
+   }
+
 
    /* document.getElementsByClassName("tab-item-active")[0].checkTab("role", "button");
       document.getElementsByClassName("tab-item")[0].checkTab("role", "button");*/

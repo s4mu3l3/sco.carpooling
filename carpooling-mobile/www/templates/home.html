@@ -18,8 +18,8 @@
 
                   <div class="list" ng-if="!!driverTrips && driverTrips.length > 0">
                      <div class="card card-trip" ng-repeat="trip in driverTrips | limitTo: maxItemsPerList" ng-click="selectOfferedTrip($index)">
-                        <div ng-hide="true" id="mieiviaggi"><span ng-if="!!trip.recurrentId">viaggio ricorrente. </span><span>{{ trip.when | date: travelDateFormat }}.</span> Partenza: <span>{{trip.from.name}}. Arrivo: <span>{{trip.to.name}}.</span></span>{{'lbl_start_time' | translate}}: <span>{{ trip.when | date: travelTimeFormat}}.</span> Ci sono {{trip.bookingCounters['available']}} {{'lbl_user_car_seats' | translate}}. <span>Clicca per andare nella pagina di dettaglio del viaggio</span></div>
-                        <div class="item" aria-labelledby="mieiviaggi">
+                        <div id="{{trip}}"><span ng-if="!!trip.recurrentId">viaggio ricorrente. </span><span>{{ trip.when | date: travelDateFormat }}.</span> Partenza: <span>{{trip.from.name}}. Arrivo: <span>{{trip.to.name}}.</span></span>{{'lbl_start_time' | translate}}: <span>{{ trip.when | date: travelTimeFormat}}.</span> Ci sono {{trip.bookingCounters['available']}} {{'lbl_user_car_seats' | translate}}. <span>Clicca per andare nella pagina di dettaglio del viaggio</span></div>
+                        <div class="item" aria-labelledby="{{trip}}">
                            <div class="trip-data" aria-hidden="true">
                               <ul>
                                  <li>
