@@ -26,17 +26,11 @@ angular.module('carpooling.controllers.home', [])
       function (ratio) {
          if (ratio == 1) {
             for (i in document.getElementsByClassName("item-content")) {
-               if (!!document.getElementsByClassName("item-content")[i].isNumber) {
-                  console.log(document.getElementsByClassName("item-content")[i]);
-                  document.getElementsByClassName("item-content")[i].setAttribute("aria-hidden", "false");
-               }
+               document.getElementsByClassName("item-content")[i].setAttribute("aria-hidden", "false");
             }
          } else {
             for (i in document.getElementsByClassName("item-content")) {
-               if (!!document.getElementsByClassName("item-content")[i].isNumber) {
-                  console.log(document.getElementsByClassName("item-content")[i]);
-                  document.getElementsByClassName("item-content")[i].setAttribute("aria-hidden", "true");
-               }
+               document.getElementsByClassName("item-content")[i].setAttribute("aria-hidden", "true");
             }
          }
       });
