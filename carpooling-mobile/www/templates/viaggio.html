@@ -1,177 +1,178 @@
 <ion-view title="{{isMine ? 'lbl_mytrip': 'lbl_trip'| translate}}">
-    <ion-nav-buttons side="right">
-        <a ng-if="isMine && !isPastTrip" class="button button-icon ion-trash-b" ng-click="RemoveTrip()"></a>
-    </ion-nav-buttons>
-    <ion-content>
-        <div ng-if="!isMine">
-            <div id="trip-map-container" data-tap-disabled="true" aria-disabled="true" aria-label="mappa">
-                <leaflet event-broadcast="events" center="center" markers="markers" paths="pathLine" style="width: 100%; height: 200px;" ng-init="initMap()" id="tripMap" aria-hidden="true"></leaflet>
+   <ion-nav-buttons side="right">
+      <a ng-if="isMine && !isPastTrip" class="button button-icon ion-trash-b" ng-click="RemoveTrip()"></a>
+   </ion-nav-buttons>
+   <ion-content>
+      <span class="modalstatus"></span>
+      <div ng-if="!isMine">
+         <div id="trip-map-container" data-tap-disabled="true" aria-disabled="true" aria-label="mappa">
+            <leaflet event-broadcast="events" center="center" markers="markers" paths="pathLine" style="width: 100%; height: 200px;" ng-init="initMap()" id="tripMap" aria-hidden="true"></leaflet>
+         </div>
+         <div class="row trip-owner">
+            <div class="col">
+               <div class="trip-driver">
+                  <p><i class="icons ion-person"></i>
+                     <span>{{driverInfo.dpName}}</span></p>
+                  <button class="button custom-button-calm" ng-click="showUser()" role="link" aria-label="mostra profilo">
+                     {{'lbl_show_profile' | translate}}
+                  </button>
+               </div>
             </div>
-            <div class="row trip-owner">
-                <div class="col">
-                    <div class="trip-driver">
-                        <p><i class="icons ion-person"></i>
-                            <span>{{driverInfo.dpName}}</span></p>
-                        <button class="button custom-button-calm" ng-click="showUser()" role="link" aria-label="mostra profilo">
-                            {{'lbl_show_profile' | translate}}
-                        </button>
-                    </div>
-                </div>
-                <div ng-if="mainCommunity != null" class="col" ng-style="{'color': '#FFFFFF', 'background-color': '#'+mainCommunity.color}" ng-click="showCommunity()">
-                    <i class="icons ion-ios-people" ng-style="{'vertical-align': 'middle', 'font-size': '2em'}"></i>
-                    <p>{{mainCommunity.name}}</p>
-                </div>
+            <div ng-if="mainCommunity != null" class="col" ng-style="{'color': '#FFFFFF', 'background-color': '#'+mainCommunity.color}" ng-click="showCommunity()">
+               <i class="icons ion-ios-people" ng-style="{'vertical-align': 'middle', 'font-size': '2em'}"></i>
+               <p>{{mainCommunity.name}}</p>
             </div>
-        </div>
-        <div ng-if="isMine && mainCommunity != null">
-            <div class="row trip-owner">
-                <div class="col" ng-style="{'color': '#FFFFFF', 'background-color': '#'+mainCommunity.color}" ng-click="showCommunity()">
-                    <i class="icons ion-ios-people"  ng-style="{'vertical-align': 'middle', 'font-size': '1.5em'}"></i>
-                    <span>{{mainCommunity.name}}</span>
-                </div>
+         </div>
+      </div>
+      <div ng-if="isMine && mainCommunity != null">
+         <div class="row trip-owner">
+            <div class="col" ng-style="{'color': '#FFFFFF', 'background-color': '#'+mainCommunity.color}" ng-click="showCommunity()">
+               <i class="icons ion-ios-people" ng-style="{'vertical-align': 'middle', 'font-size': '1.5em'}"></i>
+               <span>{{mainCommunity.name}}</span>
             </div>
-        </div>
+         </div>
+      </div>
 
-        <div class="padding trip-info">
-            <p>
-                <span>{{selectedTrip.when | date:travelDateFormat}}</span>
-            </p>
+      <div class="padding trip-info">
+         <p>
+            <span>{{selectedTrip.when | date:travelDateFormat}}</span>
+         </p>
 
-            <ul>
-                <li>
-                    {{'lbl_from' | translate}}: <span>{{selectedTrip.from.name}}</span>
-                </li>
-                <li>
-                    {{'lbl_to' | translate | uppercase}}: <span>{{selectedTrip.to.name}}</span>
-                </li>
-            </ul>
+         <ul>
+            <li>
+               {{'lbl_from' | translate}}: <span>{{selectedTrip.from.name}}</span>
+            </li>
+            <li>
+               {{'lbl_to' | translate | uppercase}}: <span>{{selectedTrip.to.name}}</span>
+            </li>
+         </ul>
 
-            <ul class="padding-top padding-bottom">
-                <li>
-                    {{'lbl_start_time' | translate}}: <span>{{selectedTrip.route.startime | date:travelTimeFormat}}</span>
-                </li>
-                <li>
-                    {{'lbl_end_time' | translate}}: <span>{{selectedTrip.route.endtime | date:travelTimeFormat}}</span>
-                </li>
-            </ul>
+         <ul class="padding-top padding-bottom">
+            <li>
+               {{'lbl_start_time' | translate}}: <span>{{selectedTrip.route.startime | date:travelTimeFormat}}</span>
+            </li>
+            <li>
+               {{'lbl_end_time' | translate}}: <span>{{selectedTrip.route.endtime | date:travelTimeFormat}}</span>
+            </li>
+         </ul>
 
-            <p>
-                {{'lbl_halfwaystops' | translate}}: <span>{{(!!selectedTrip.intermediateStops ? 'lbl_halfwaystops_onrequest' : 'lbl_halfwaystops_none') | translate}}</span>
-            </p>
+         <p>
+            {{'lbl_halfwaystops' | translate}}: <span>{{(!!selectedTrip.intermediateStops ? 'lbl_halfwaystops_onrequest' : 'lbl_halfwaystops_none') | translate}}</span>
+         </p>
 
-            <p ng-if="isRecurrencyEnabled()">
-                {{'lbl_recurrency' | translate}}: <span>{{!!selectedTrip.recurrency ? dowString : 'lbl_recurrency_none' | translate}}</span>
-            </p>
-        </div>
+         <p ng-if="isRecurrencyEnabled()">
+            {{'lbl_recurrency' | translate}}: <span>{{!!selectedTrip.recurrency ? dowString : 'lbl_recurrency_none' | translate}}</span>
+         </p>
+      </div>
 
-        <div class="padding trip-passengers" aria-label="disponibilità posti: {{getNumber(bookingCounters.booked).length}} posti utilizzati {{getNumber(bookingCounters.available).length}} posti liberi">
-            <h5 aria-hidden="true">{{'lbl_passengers' | translate | uppercase}}</h5>
-            <ul aria-hidden="true">
-                <!--<li class="trip-places-booked" ng-repeat="i in getNumber(bookingCounters.booked) track by $index">
+      <div class="padding trip-passengers" aria-label="disponibilità posti: {{getNumber(bookingCounters.booked).length}} posti utilizzati {{getNumber(bookingCounters.available).length}} posti liberi">
+         <h5 aria-hidden="true">{{'lbl_passengers' | translate | uppercase}}</h5>
+         <ul aria-hidden="true">
+            <!--<li class="trip-places-booked" ng-repeat="i in getNumber(bookingCounters.booked) track by $index">
                     <i class="icons ion-person"></i>
                 </li>
                 <li class="trip-places-left">
                     <span>{{bookingCounters.available !== selectedTrip.places ? '+' : ''}}{{bookingCounters.available}}</span>
                     <div>{{'lbl_spaces_left' | translate | uppercase}}</div>
                 </li>-->
-                <li class="trip-places-booked" ng-repeat="i in getNumber(bookingCounters.booked) track by $index">
-                    <i class="icon cp-seat"></i>
-                </li>
-                <li class="trip-places-left" ng-repeat="i in getNumber(bookingCounters.available) track by $index">
-                    <i class="icon cp-seat_outline"></i>
-                </li>
-            </ul>
-        </div>
+            <li class="trip-places-booked" ng-repeat="i in getNumber(bookingCounters.booked) track by $index">
+               <i class="icon cp-seat"></i>
+            </li>
+            <li class="trip-places-left" ng-repeat="i in getNumber(bookingCounters.available) track by $index">
+               <i class="icon cp-seat_outline"></i>
+            </li>
+         </ul>
+      </div>
 
-        <div class="padding trip-status" ng-if="!isMine && myBooking.accepted !== null">
-            <span ng-if="myBooking.accepted === -1" class="rejected">{{'lbl_trip_rejected' | translate}}</span>
-            <span ng-if="myBooking.accepted === 0">{{'lbl_trip_requested' | translate}}</span>
-            <span ng-if="myBooking.accepted === 1" class="accepted">{{'lbl_trip_accepted' | translate}}</span>
-        </div>
+      <div class="padding trip-status" ng-if="!isMine && myBooking.accepted !== null">
+         <span ng-if="myBooking.accepted === -1" class="rejected">{{'lbl_trip_rejected' | translate}}</span>
+         <span ng-if="myBooking.accepted === 0">{{'lbl_trip_requested' | translate}}</span>
+         <span ng-if="myBooking.accepted === 1" class="accepted">{{'lbl_trip_accepted' | translate}}</span>
+      </div>
 
-        <!-- I AM A PASSENGER -->
-        <div class="padding trip-actions" ng-if="!isMine">
-            <!--ng-if="myBooking.accepted === null || myBooking.accepted !== -1"-->
-            <div class="btn btn-left">
-                <button class="button button-carpooling" ng-click="bookingAction()" ng-disabled="myBooking.accepted === -1 || myBooking.accepted === 0 || (myBooking.accepted === null && !!isPastTrip)">
-                    <span ng-if="myBooking.accepted === null">{{'lbl_trip_ask' | translate | uppercase}}</span>
-                    <span ng-if="myBooking.accepted === -1 || myBooking.accepted === 0 || myBooking.accepted === 1">{{'lbl_trip_rate' | translate | uppercase}}</span>
-                </button>
-            </div>
-            <div class="btn btn-right">
-                <button class="button button-carpooling" ng-click="chatWithDriver()">
-                    {{'lbl_driver_contact' | translate | uppercase}}
-                </button>
-            </div>
-        </div>
+      <!-- I AM A PASSENGER -->
+      <div class="padding trip-actions" ng-if="!isMine">
+         <!--ng-if="myBooking.accepted === null || myBooking.accepted !== -1"-->
+         <div class="btn btn-left">
+            <button class="button button-carpooling" ng-click="bookingAction()" ng-disabled="myBooking.accepted === -1 || myBooking.accepted === 0 || (myBooking.accepted === null && !!isPastTrip)">
+               <span ng-if="myBooking.accepted === null">{{'lbl_trip_ask' | translate | uppercase}}</span>
+               <span ng-if="myBooking.accepted === -1 || myBooking.accepted === 0 || myBooking.accepted === 1">{{'lbl_trip_rate' | translate | uppercase}}</span>
+            </button>
+         </div>
+         <div class="btn btn-right">
+            <button class="button button-carpooling" ng-click="chatWithDriver()">
+               {{'lbl_driver_contact' | translate | uppercase}}
+            </button>
+         </div>
+      </div>
 
-        <!-- I AM A DRIVER -->
-        <!--<div class="padding trip-requests" ng-if="isMine && $scope.selectedTrip.bookings.length > 0">-->
-        <div class="trip-requests" ng-if="isMine && !!selectedTrip.bookings && bookingCounters.booked > 0">
-            <h5 ng-if="!isPastTrip">{{'lbl_requests' | translate}}</h5>
-            <!--<div class="padding" ng-if="bookingCounters.booked == 0">
+      <!-- I AM A DRIVER -->
+      <!--<div class="padding trip-requests" ng-if="isMine && $scope.selectedTrip.bookings.length > 0">-->
+      <div class="trip-requests" ng-if="isMine && !!selectedTrip.bookings && bookingCounters.booked > 0">
+         <h5 ng-if="!isPastTrip">{{'lbl_requests' | translate}}</h5>
+         <!--<div class="padding" ng-if="bookingCounters.booked == 0">
                 <h4>{{'lbl_no_results' | translate}}</h4>
             </div>-->
-            <!--<div class="list">-->
-            <!--CURRENT TRIPS-->
-            <ion-list ng-if="bookingCounters.booked > 0 && !isPastTrip">
-                <a class="item item-button-right" ng-repeat="booking in selectedTrip.bookings" ng-if="booking.accepted === 0 || booking.accepted === 1">
-                    <!--<i class="icon ion-person"></i>-->
-                    <div>
-                        <p>{{booking.traveller.dpName}}</p>
-                        <button class="button button-clear button-calm custom-button-calm" ng-click="showPassenger(booking)">
-                            {{'lbl_show_profile' | translate}}
-                        </button>
-                    </div>
-                    <!--Name Surname-->
-                    <button class="button button-carpooling" ng-if="booking.accepted === 0" ng-click="reject(booking, (isRecurrencyEnabled() && !!selectedTrip.recurrentId))">
-                        <i class="icon ion-close-round"></i>
-                    </button>
-                    <button class="button" ng-class="{'button-carpooling': booking.accepted === 0, 'button-carpooling-inverse': booking.accepted === 1}" ng-click="positiveAction(booking)">
-                        <i class="icon" ng-class="{'ion-checkmark-round': booking.accepted === 0, 'ion-more': booking.accepted === 1}"></i>
-                    </button>
-                </a>
-                <!--</div>-->
-            </ion-list>
-            <!--PAST TRIPS-->
-            <!--ACCEPTED PASSENGERS-->
-            <h5 ng-if="pass_accepted.length  > 0 && !!isPastTrip">{{'lbl_passengers_accepted' | translate}}</h5>
-            <ion-list ng-if="pass_accepted.length > 0 && !!isPastTrip">
-                <a class="item item-button-right" ng-repeat="booking in pass_accepted" ng-if="booking.accepted === 1">
-                    <!--<i class="icon ion-person"></i>-->
-                    <div>
-                        <p>{{booking.traveller.dpName}}</p>
-                        <button class="button button-clear button-calm custom-button-calm" ng-click="showPassenger(booking)">
-                            {{'lbl_show_profile' | translate}}
-                        </button>
-                    </div>
-                    <button class="button button-carpooling" ng-click="chat(booking)">
-                        <i class="icon ion-chatboxes"></i>
-                    </button>
-                    <button class="button button-carpooling" ng-click="rate(booking)">
-                        <i class="icon ion-ios-star"></i>
-                    </button>
-                </a>
-                <!--</div>-->
-            </ion-list>
-            <!--PAST TRIPS-->
-            <!--NON ACCEPTED PASSENGERS-->
-            <h5 ng-if="pass_not_accepted.length  > 0 && !!isPastTrip">{{'lbl_passengers_not_accepted' | translate}}</h5>
-            <ion-list ng-if="pass_not_accepted.length > 0 && !!isPastTrip">
-                <a class="item item-button-right" ng-repeat="booking in pass_not_accepted" ng-if="booking.accepted === 0">
-                    <!--<i class="icon ion-person"></i>-->
-                    <div>
-                        <p>{{booking.traveller.dpName}}</p>
-                        <button class="button button-clear button-calm custom-button-calm" ng-click="showPassenger(booking)">
-                            {{'lbl_show_profile' | translate}}
-                        </button>
-                    </div>
-                    <button class="button button-carpooling" ng-click="chat(booking)">
-                        <i class="icon ion-chatboxes"></i>
-                    </button>
-                </a>
-                <!--</div>-->
-            </ion-list>
-        </div>
-    </ion-content>
+         <!--<div class="list">-->
+         <!--CURRENT TRIPS-->
+         <ion-list ng-if="bookingCounters.booked > 0 && !isPastTrip">
+            <a class="item item-button-right" ng-repeat="booking in selectedTrip.bookings" ng-if="booking.accepted === 0 || booking.accepted === 1">
+               <!--<i class="icon ion-person"></i>-->
+               <div>
+                  <p>{{booking.traveller.dpName}}</p>
+                  <button class="button button-clear button-calm custom-button-calm" ng-click="showPassenger(booking)">
+                     {{'lbl_show_profile' | translate}}
+                  </button>
+               </div>
+               <!--Name Surname-->
+               <button class="button button-carpooling" ng-if="booking.accepted === 0" ng-click="reject(booking, (isRecurrencyEnabled() && !!selectedTrip.recurrentId))">
+                  <i class="icon ion-close-round"></i>
+               </button>
+               <button class="button" ng-class="{'button-carpooling': booking.accepted === 0, 'button-carpooling-inverse': booking.accepted === 1}" ng-click="positiveAction(booking)">
+                  <i class="icon" ng-class="{'ion-checkmark-round': booking.accepted === 0, 'ion-more': booking.accepted === 1}"></i>
+               </button>
+            </a>
+            <!--</div>-->
+         </ion-list>
+         <!--PAST TRIPS-->
+         <!--ACCEPTED PASSENGERS-->
+         <h5 ng-if="pass_accepted.length  > 0 && !!isPastTrip">{{'lbl_passengers_accepted' | translate}}</h5>
+         <ion-list ng-if="pass_accepted.length > 0 && !!isPastTrip">
+            <a class="item item-button-right" ng-repeat="booking in pass_accepted" ng-if="booking.accepted === 1">
+               <!--<i class="icon ion-person"></i>-->
+               <div>
+                  <p>{{booking.traveller.dpName}}</p>
+                  <button class="button button-clear button-calm custom-button-calm" ng-click="showPassenger(booking)">
+                     {{'lbl_show_profile' | translate}}
+                  </button>
+               </div>
+               <button class="button button-carpooling" ng-click="chat(booking)">
+                  <i class="icon ion-chatboxes"></i>
+               </button>
+               <button class="button button-carpooling" ng-click="rate(booking)">
+                  <i class="icon ion-ios-star"></i>
+               </button>
+            </a>
+            <!--</div>-->
+         </ion-list>
+         <!--PAST TRIPS-->
+         <!--NON ACCEPTED PASSENGERS-->
+         <h5 ng-if="pass_not_accepted.length  > 0 && !!isPastTrip">{{'lbl_passengers_not_accepted' | translate}}</h5>
+         <ion-list ng-if="pass_not_accepted.length > 0 && !!isPastTrip">
+            <a class="item item-button-right" ng-repeat="booking in pass_not_accepted" ng-if="booking.accepted === 0">
+               <!--<i class="icon ion-person"></i>-->
+               <div>
+                  <p>{{booking.traveller.dpName}}</p>
+                  <button class="button button-clear button-calm custom-button-calm" ng-click="showPassenger(booking)">
+                     {{'lbl_show_profile' | translate}}
+                  </button>
+               </div>
+               <button class="button button-carpooling" ng-click="chat(booking)">
+                  <i class="icon ion-chatboxes"></i>
+               </button>
+            </a>
+            <!--</div>-->
+         </ion-list>
+      </div>
+   </ion-content>
 </ion-view>
